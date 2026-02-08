@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Post extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -24,6 +25,7 @@ class Post extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -39,15 +41,13 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function scopeFeatured($query){
-        return $query->where('featured', true);
+    public function previous()
+    {
+        return Post::where('id', '<', $this->id)->orderBy('id', 'desc')->first();
     }
 
-    public function previousPost(){
-        return  Post::where('id', '<', $this->id)->orderBy('id','desc')->first();
-    }
-
-    public function nextPost(){
+    public function next()
+    {
         return Post::where('id', '>', $this->id)->orderBy('id')->first();
     }
 }

@@ -23,7 +23,7 @@
 
                             <p class="lead">
                                 {!! nl2br(e(html_entity_decode($post->body))) !!}
-{{--                                {{ $post->body }}--}}
+                                {{--                                {{ $post->body }}--}}
                             </p>
 
                         </div> <!-- end s-entry__entry-content -->
@@ -43,30 +43,30 @@
                                     <a
                                         href="{{ route('categories.view', $post->categories->first()->id) }}">{{ $post->categories->first()->title }}</a>
                                 </div>
-      
 
-                        </div> <!-- s-content__entry-meta -->
 
-                        <div class="s-content__pagenav">
-                            @if ($post->previousPost())
-                                <div class="prev-nav">
-                                    <a href="#" rel="prev">
-                                        <span>Previous</span>
-                                        {{ $post->previousPost()->title }}
-                                    </a>
-                                </div>
-                            @endif
-                            @if ($post->nextPost())
-                                <div class="next-nav">
-                                    <a href="#" rel="next">
-                                        <span>Next</span>
-                                        {{ $post->nextPost()->title }}
-                                    </a>
-                                </div>
-                            @endif
-                        </div> <!-- end s-content__pagenav -->
+                            </div> <!-- s-content__entry-meta -->
 
-                    </div> <!-- end s-content__primary -->
+                            <div class="s-content__pagenav">
+                                @if ($post->previous())
+                                    <div class="prev-nav">
+                                        <a href="#" rel="prev">
+                                            <span>Previous</span>
+                                            {{ $post->previous()->title }}
+                                        </a>
+                                    </div>
+                                @endif
+                                @if ($post->next())
+                                    <div class="next-nav">
+                                        <a href="#" rel="next">
+                                            <span>Next</span>
+                                            {{ $post->next()->title }}
+                                        </a>
+                                    </div>
+                                @endif
+                            </div> <!-- end s-content__pagenav -->
+
+                        </div> <!-- end s-content__primary -->
                 </article> <!-- end entry -->
 
             </div> <!-- end column -->

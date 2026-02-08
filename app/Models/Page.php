@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends Model
 {
@@ -21,10 +21,10 @@ class Page extends Model
     protected $table = 'pages';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -37,18 +37,14 @@ class Page extends Model
     /**
      * Change activity log event description
      *
-     * @param string $eventName
-     *
+     * @param  string  $eventName
      * @return string
      */
     public function getDescriptionForEvent($eventName)
     {
-        return __CLASS__ . " model has been {$eventName}";
+        return __CLASS__." model has been {$eventName}";
     }
 
-    /**
-     * @return LogOptions
-     */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults();

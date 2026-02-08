@@ -19,7 +19,7 @@ class UsersController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
+        if (! empty($keyword)) {
             $users = User::where('name', 'LIKE', "%$keyword%")->orWhere('email', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
@@ -45,7 +45,6 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      *
      * @return void
      */
@@ -57,7 +56,7 @@ class UsersController extends Controller
                 'name' => 'required',
                 'email' => 'required|string|max:255|email|unique:users',
                 'password' => 'required',
-                'roles' => 'required'
+                'roles' => 'required',
             ]
         );
 
@@ -76,12 +75,12 @@ class UsersController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function show($id)
     {
         $user = User::findOrFail($id);
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -89,7 +88,6 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function edit($id)
@@ -109,9 +107,7 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int      $id
-     *
+     * @param  int  $id
      * @return void
      */
     public function update(Request $request, $id)
@@ -120,8 +116,8 @@ class UsersController extends Controller
             $request,
             [
                 'name' => 'required',
-                'email' => 'required|string|max:255|email|unique:users,email,' . $id,
-                'roles' => 'required'
+                'email' => 'required|string|max:255|email|unique:users,email,'.$id,
+                'roles' => 'required',
             ]
         );
 
@@ -145,7 +141,6 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function destroy($id)

@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use App\Models\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\QueryException;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,6 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any application authentication / authorization services.
      *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
      *
      * @return void
      */

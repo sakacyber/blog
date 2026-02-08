@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\{Category, Post};
-use App\Observers\PostObserver;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +21,5 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-    }
+    public function boot() {}
 }

@@ -30,7 +30,6 @@ class Role extends Model
     /**
      * Grant the given permission to a role.
      *
-     * @param  Permission $permission
      *
      * @return mixed
      */
@@ -42,18 +41,14 @@ class Role extends Model
     /**
      * Change activity log event description
      *
-     * @param string $eventName
-     *
+     * @param  string  $eventName
      * @return string
      */
     public function getDescriptionForEvent($eventName)
     {
-        return __CLASS__ . " model has been {$eventName}";
+        return __CLASS__." model has been {$eventName}";
     }
 
-    /**
-     * @return LogOptions
-     */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults();

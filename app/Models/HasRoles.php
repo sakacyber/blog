@@ -17,8 +17,7 @@ trait HasRoles
     /**
      * Assign the given role to the user.
      *
-     * @param  string $role
-     *
+     * @param  string  $role
      * @return mixed
      */
     public function assignRole($role)
@@ -31,9 +30,8 @@ trait HasRoles
     /**
      * Determine if the user has the given role.
      *
-     * @param  mixed $role
-     *
-     * @return boolean
+     * @param  mixed  $role
+     * @return bool
      */
     public function hasRole($role)
     {
@@ -51,15 +49,14 @@ trait HasRoles
             return false;
         }
 
-        return !!$role->intersect($this->roles)->count();
+        return (bool) $role->intersect($this->roles)->count();
     }
 
     /**
      * Determine if the user may perform the given permission.
      *
-     * @param  Permission $permission
      *
-     * @return boolean
+     * @return bool
      */
     public function hasPermission(Permission $permission)
     {

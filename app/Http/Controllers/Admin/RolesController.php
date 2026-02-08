@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
@@ -19,7 +19,7 @@ class RolesController extends Controller
         $keyword = $request->get('search');
         $perPage = 15;
 
-        if (!empty($keyword)) {
+        if (! empty($keyword)) {
             $roles = Role::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
@@ -44,7 +44,6 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      *
      * @return void
      */
@@ -69,7 +68,6 @@ class RolesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function show($id)
@@ -83,7 +81,6 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function edit($id)
@@ -97,9 +94,7 @@ class RolesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     *
      * @return void
      */
     public function update(Request $request, $id)
@@ -124,7 +119,6 @@ class RolesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
      * @return void
      */
     public function destroy($id)

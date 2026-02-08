@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -20,7 +18,7 @@ class SettingsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
+        if (! empty($keyword)) {
             $settings = Setting::where('key', 'LIKE', "%$keyword%")
                 ->orWhere('value', 'LIKE', "%$keyword%")
                 ->orderBy('key')->paginate($perPage);
@@ -44,7 +42,6 @@ class SettingsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -54,7 +51,7 @@ class SettingsController extends Controller
             $request,
             [
                 'key' => 'required|string|unique:settings',
-                'value' => 'required'
+                'value' => 'required',
             ]
         );
 
@@ -69,7 +66,6 @@ class SettingsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\View\View
      */
     public function show($id)
@@ -83,7 +79,6 @@ class SettingsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -96,9 +91,7 @@ class SettingsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      * @param  int  $id
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
@@ -106,8 +99,8 @@ class SettingsController extends Controller
         $this->validate(
             $request,
             [
-                'key' => 'required|string|unique:settings,key,' . $id,
-                'value' => 'required'
+                'key' => 'required|string|unique:settings,key,'.$id,
+                'value' => 'required',
             ]
         );
         $requestData = $request->all();
@@ -122,7 +115,6 @@ class SettingsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)

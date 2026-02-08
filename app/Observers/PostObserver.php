@@ -8,14 +8,14 @@ class PostObserver
 {
     public $request;
 
-    function __construct()
+    public function __construct()
     {
         $this->request = request();
     }
+
     /**
      * Handle the Post "created" event.
      *
-     * @param  \App\Models\Post  $post
      * @return void
      */
     public function created(Post $post)
@@ -26,7 +26,6 @@ class PostObserver
     /**
      * Handle the Post "updated" event.
      *
-     * @param  \App\Models\Post  $post
      * @return void
      */
     public function updated(Post $post)
@@ -37,7 +36,6 @@ class PostObserver
     /**
      * Handle the Post "deleted" event.
      *
-     * @param  \App\Models\Post  $post
      * @return void
      */
     public function deleted(Post $post)
@@ -48,7 +46,6 @@ class PostObserver
     /**
      * Handle the Post "restored" event.
      *
-     * @param  \App\Models\Post  $post
      * @return void
      */
     public function restored(Post $post)
@@ -59,7 +56,6 @@ class PostObserver
     /**
      * Handle the Post "force deleted" event.
      *
-     * @param  \App\Models\Post  $post
      * @return void
      */
     public function forceDeleted(Post $post)
@@ -67,9 +63,10 @@ class PostObserver
         //
     }
 
-    function saveCategoryAndTag($post){
+    public function saveCategoryAndTag($post)
+    {
 
-        if($this->request->has('category')) {
+        if ($this->request->has('category')) {
             $post->categories()->sync($this->request->category);
         }
     }

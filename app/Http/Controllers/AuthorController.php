@@ -17,6 +17,7 @@ class AuthorController extends Controller
     {
         $perPage = 25;
         $users = User::latest()->paginate($perPage);
+
         return view('back.author.index', compact('users'));
     }
 
@@ -28,18 +29,19 @@ class AuthorController extends Controller
     public function create()
     {
         return view('comingsoon');
+
         return view('back.author.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         User::create($request->post());
+
         return redirect()->route('authors.index')->with('message', 'Author created successfully');
     }
 
@@ -53,19 +55,20 @@ class AuthorController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = Role::select('id', 'name', 'label')->get();
+
         return view('back.author.edit', compact('user', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
         $user->update($request->post());
+
         return back()->with(['ok' => 'The author has been updated successfully']);
     }
 
@@ -78,6 +81,7 @@ class AuthorController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return back();
     }
 }

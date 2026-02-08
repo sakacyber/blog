@@ -13,12 +13,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return view('back.categories.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
@@ -27,12 +27,11 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param Request $request
      */
     public function store(Request $request)
     {
         Category::create($request->post());
+
         return redirect()->route('categories.index')->with('message', 'Category created successfully');
     }
 
@@ -48,22 +47,25 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
+     *
      * @param  int  $id
      */
     public function update(Request $request, Category $category)
     {
         $category->update($request->post());
+
         return back()->with(['ok' => 'The category has been updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param  int  $id
      */
     public function destroy(Category $category)
     {
         $category->delete();
+
         return back();
     }
 }
